@@ -36,23 +36,23 @@ export default function Header() {
                 <div className="flex md:hidden flex-1 justify-end">
                     <button
                         onClick={() => setIsMenuOpen(true)}
-                        className="p-2 space-y-1.5 hover:opacity-70 transition-opacity"
+                        className="p-2 space-y-1.5 hover:opacity-70 transition-opacity bg-transparent"
                     >
-                        <div className="w-6 h-0.5 bg-white mix-blend-difference"></div>
-                        <div className="w-6 h-0.5 bg-white mix-blend-difference"></div>
-                        <div className="w-6 h-0.5 bg-white mix-blend-difference"></div>
+                        <div className="w-6 h-0.5 bg-white "></div>
+                        <div className="w-6 h-0.5 bg-white "></div>
+                        <div className="w-6 h-0.5 bg-white "></div>
                     </button>
                 </div>
             </header>
 
             {/* Mobile Menu Overlay */}
             <div
-                className={`fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+                className={`fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm flex flex-col justify-center items-center gap-8 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
                     }`}
             >
                 <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="absolute top-6 right-6 p-4 text-white hover:text-[#ff4d00] transition-colors"
+                    className="absolute top-6 right-6 p-4 text-white hover:text-[#ff4d00] transition-colors bg-transparent"
                 >
                     <div className="relative w-6 h-6">
                         <span className="absolute top-1/2 left-0 w-full h-0.5 bg-current rotate-45 transform -translate-y-1/2"></span>
