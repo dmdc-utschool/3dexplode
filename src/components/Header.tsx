@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,8 +9,10 @@ export default function Header() {
             <header className="fixed top-0 left-0 w-full z-30 flex items-center justify-between px-6 py-4 bg-black/10 backdrop-blur-[2px] text-white uppercase tracking-wider text-xs font-bold font-mono">
                 {/* Left: Logo */}
                 <div className="flex items-center gap-2 flex-1 justify-start">
-                    <img src="/logowhite.svg" alt="3dexplode Logo" className="hidden md:block h-6 w-auto mix-blend-difference" />
-                    <img src="/justlogo.svg" alt="3dexplode Logo" className="block md:hidden h-8 w-auto mix-blend-difference" />
+                    <Link to="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+                        <img src="/logowhite.svg" alt="3dexplode Logo" className="hidden md:block h-6 w-auto mix-blend-difference" />
+                        <img src="/justlogo.svg" alt="3dexplode Logo" className="block md:hidden h-8 w-auto mix-blend-difference" />
+                    </Link>
                 </div>
 
                 {/* Center: Brand */}
@@ -20,7 +23,8 @@ export default function Header() {
                 {/* Right: Actions (Desktop) */}
                 <div className="hidden md:flex flex-1 justify-end items-center gap-8">
                     <nav className="flex gap-6">
-                        {['About', 'Services', 'Contact'].map((item) => (
+                        <Link to="/about" className="hover:text-[#ff4d00] transition-colors duration-200 mix-blend-difference">About</Link>
+                        {['Services', 'Contact'].map((item) => (
                             <a
                                 key={item}
                                 href="#"
@@ -62,7 +66,14 @@ export default function Header() {
                 </button>
 
                 <nav className="flex flex-col items-center gap-8 text-2xl font-black font-sans tracking-tight uppercase">
-                    {['About', 'Services', 'Contact'].map((item) => (
+                    <Link
+                        to="/about"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-white hover:text-[#ff4d00] transition-colors duration-300"
+                    >
+                        About
+                    </Link>
+                    {['Services', 'Contact'].map((item) => (
                         <a
                             key={item}
                             href="#"

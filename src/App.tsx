@@ -1,23 +1,45 @@
-import './App.css'
-import Dither from './components/Dither';
-import Header from './components/Header';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import './App.css';
+import LoadingScreen from './components/LoadingScreen';
+import Home from './pages/Home';
+import About from './pages/About';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true); // Start true for initial load
+
+  useEffect(() => {
+    setIsLoading(true);
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]); // Trigger on path change only
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}>
-      <Header />
-      <Dither
-        waveColor={[0.4, 0.3, 0.1]}
-        pixelSize={5}
-        colorNum={12}
-        waveAmplitude={0.38}
-        waveFrequency={2.6}
-        waveSpeed={0.05}
-        enableMouseInteraction={false}
-      />
-    </div>
-  )
+    <>
+      <div className={`transition-opacity duration-500 ${isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {isLoading && <LoadingScreen />}
+      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+export default App;
