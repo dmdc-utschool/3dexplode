@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Shuffle from './Shuffle';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,11 +16,9 @@ export default function Header() {
                 </div>
 
                 {/* Center: Brand */}
-                <Shuffle
-                    text="3dexplode."
-                    tag="span"
-                    className="text-xl md:text-2xl tracking-tighter normal-case font-sans font-black mix-blend-difference pointer-events-auto"
-                />
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                    <span className="text-xl md:text-2xl tracking-tighter normal-case font-sans font-black mix-blend-difference pointer-events-auto">3dexplode.</span>
+                </div>
 
                 {/* Right: Actions (Desktop) */}
                 <div className="hidden md:flex flex-1 justify-end items-center gap-8">
